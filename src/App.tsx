@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import AppContainerPage from './pages/AppContainer.page';
 import AuthPage from './pages/Auth.page';
-import LoginPage from './pages/Login.page';
 import NotFoundPage from './pages/NotFound.page';
 
 function App() {

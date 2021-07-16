@@ -3,6 +3,7 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import AppContainerPage from './pages/AppContainer.page';
 import AuthPage from './pages/Auth.page';
 import LoginPage from './pages/Login.page';
+import NotFoundPage from './pages/NotFound.page';
 
 function App() {
   return (
@@ -17,7 +18,9 @@ function App() {
         <Route path={["/dashboard","/recordings"]}>
           <AppContainerPage></AppContainerPage>
         </Route>
-        <Route></Route>
+        <Route>
+          <NotFoundPage></NotFoundPage>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

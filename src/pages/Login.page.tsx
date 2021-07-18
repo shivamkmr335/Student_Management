@@ -5,13 +5,14 @@ import { Link, useHistory } from 'react-router-dom';
 import {useFormik, yupToFormErrors} from "formik";
 import * as yup from "yup";
 import react from 'react';
+import InputBox from '../components/InputBox';
 
 interface Props {
 }
 
 const LoginPage: FC<Props> = (props) => {
 
-  const myForm = useFormik({
+  const {handleSubmit , getFieldProps , touched , isSubmitting , errors} = useFormik({
     initialValues: {
       email: "",
       password: ""
@@ -46,46 +47,34 @@ const LoginPage: FC<Props> = (props) => {
             </Link>
           </p>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={myForm.handleSubmit} >
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit} >
 
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-               <label htmlFor="email-address" className="sr-only">  {/* sr-only makes the div hidden but able to be read by screen reader thus making it useful for screen readers */}
-                Email address
-              </label>
-              <input
-                id="email-address"
-                name="email"
-                type="email"
-                autoComplete="email"
-                value={myForm.values.email}
-                onChange={myForm.handleChange}
-                onBlur={myForm.handleBlur}
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
-              />
-            </div>
-            { myForm.touched.email && <div className="text-red-600">{myForm.errors.email}</div> }
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                value={myForm.values.password}
-                onChange={myForm.handleChange}
-                onBlur={myForm.handleBlur}
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
-              />
-            </div>
-            { myForm.touched.password && <div className="text-red-600">{myForm.errors.password}</div> }
+
+            <InputBox
+              id="email-address"
+              type="email"
+              autoComplete="email"
+              placeholder="Email Address"
+              required
+              {...getFieldProps("email")}
+              touched= {touched.email}
+              error= {errors.email}
+            ></InputBox>
+
+            <InputBox
+              id="password"
+              type="password"
+              autoComplete="current-password"
+              placeholder="Password"
+              required
+              {...getFieldProps("password")}
+              touched= {touched.password}
+              error= {errors.password}
+            ></InputBox>
+
+            
           </div>
 
           <div className="flex items-center justify-between">
@@ -118,7 +107,7 @@ const LoginPage: FC<Props> = (props) => {
               </span>
               Sign in
             </button>
-            {myForm.isSubmitting && <FaSpinner className="animate-spin mt-5"></FaSpinner> }
+            {isSubmitting && <FaSpinner className="animate-spin mt-5"></FaSpinner> }
           </div>
         </form>
       </div>

@@ -1,47 +1,34 @@
-import { useState } from 'react';
 import {FC,memo} from 'react';
 import {HiLockClosed} from 'react-icons/hi';
 import {FaSpinner} from 'react-icons/fa';
 import { Link, useHistory } from 'react-router-dom';
-import *as yup from 'yup';
+import {useFormik, yupToFormErrors} from "formik";
+import * as yup from "yup";
+import react from 'react';
 
 interface Props {
 }
 
 const LoginPage: FC<Props> = (props) => {
 
-  // const [email ,setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  const [data, setData] = useState({email:"",password:""})
-  
-  const [touched , setTouched] = useState({email:false,password:false});
-  const [submitting, setSubmitting] = useState(false);
-  const history = useHistory();
-
-
-  //Submit Button
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({...data, [event.target.name]: event.target.value});
-  }
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    setTouched({...touched, [event.target.name]: true});
-  }
-
-  // Validation
-  let emailError = "";
-  let passwordError = "";
-
-  const formValidator = yup.object().shape({
-    email: yup.string().required().email(),
-    password : yup.string().required().min(8),
+  const myForm = useFormik({
+    initialValues: {
+      email: "",
+      password: ""
+    },
+    validationSchema: yup.object().shape({
+      email: yup.string().required().email(),
+      password: yup.string().required().min(8, (min)=> "Atleast" + min+ " characters" )
+    }),
+    onSubmit: (data , { setSubmitting })=> {
+      console.log("form submitting",data);
+      setTimeout(()=>{
+        console.log("Form submitted successfully");
+        setSubmitting(false);
+      },5000)
+    }
   })
-
-  try{
-    formValidator.validateSync(data);
-  } catch (e){
-    console.log(e);
-  }
-
+  
   return (
     <div className="min-h-screen w-1/2 flex items-center justify-center bg-gray-50 py-12 px">
       <div className="space-y-8">
@@ -59,20 +46,8 @@ const LoginPage: FC<Props> = (props) => {
             </Link>
           </p>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={(event)=> {
-            event.preventDefault();
-            console.log("Error Here")
-            if(emailError || passwordError){
-              console.log("Form Submission Rejected");
-              return;
-            }
-            setSubmitting(true);
-            setTimeout(()=>{
-              console.log(data);
-              history.push("/dashboard");
-            }, 5000)
-            
-        }}>
+        <form className="mt-8 space-y-6" onSubmit={myForm.handleSubmit} >
+
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -84,15 +59,15 @@ const LoginPage: FC<Props> = (props) => {
                 name="email"
                 type="email"
                 autoComplete="email"
-                value={data.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
+                value={myForm.values.email}
+                onChange={myForm.handleChange}
+                onBlur={myForm.handleBlur}
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
               />
             </div>
-            { touched.email && <div className="text-red-600">{emailError}</div> }
+            { myForm.touched.email && <div className="text-red-600">{myForm.errors.email}</div> }
             <div>
               <label htmlFor="password" className="sr-only">
                 Password
@@ -102,15 +77,15 @@ const LoginPage: FC<Props> = (props) => {
                 name="password"
                 type="password"
                 autoComplete="current-password"
-                value={data.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
+                value={myForm.values.password}
+                onChange={myForm.handleChange}
+                onBlur={myForm.handleBlur}
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
               />
             </div>
-            { touched.password && <div className="text-red-600">{passwordError}</div> }
+            { myForm.touched.password && <div className="text-red-600">{myForm.errors.password}</div> }
           </div>
 
           <div className="flex items-center justify-between">
@@ -143,7 +118,7 @@ const LoginPage: FC<Props> = (props) => {
               </span>
               Sign in
             </button>
-            {submitting && <FaSpinner className="animate-spin mt-5"></FaSpinner> }
+            {myForm.isSubmitting && <FaSpinner className="animate-spin mt-5"></FaSpinner> }
           </div>
         </form>
       </div>

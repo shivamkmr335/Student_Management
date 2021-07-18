@@ -3,6 +3,7 @@ import {FC,memo} from 'react';
 import {HiLockClosed} from 'react-icons/hi';
 import {FaSpinner} from 'react-icons/fa';
 import { Link, useHistory } from 'react-router-dom';
+import *as yup from 'yup';
 
 interface Props {
 }
@@ -30,18 +31,16 @@ const LoginPage: FC<Props> = (props) => {
   let emailError = "";
   let passwordError = "";
 
-  if(!data.email){
-    emailError = "Email address is required"
-  }else if(!data.email.endsWith("@gmail.com")){
-    emailError= "Please enter a valid email"
-  }
+  const formValidator = yup.object().shape({
+    email: yup.string().required().email(),
+    password : yup.string().required().min(8),
+  })
 
-  if(!data.password){
-    passwordError = "Password is required"
-  }else if(data.password.length < 8 ){
-    passwordError = "Password must be of 8 characters"
+  try{
+    formValidator.validateSync(data);
+  } catch (e){
+    console.log(e);
   }
-
 
   return (
     <div className="min-h-screen w-1/2 flex items-center justify-center bg-gray-50 py-12 px">

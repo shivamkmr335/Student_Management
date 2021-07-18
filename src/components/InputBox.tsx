@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from 'react';
-import {ButtonHTMLAttributes, FC,memo} from 'react';
+import { FC,memo} from 'react';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   touched?: boolean;

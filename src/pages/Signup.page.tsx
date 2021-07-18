@@ -1,10 +1,9 @@
 import {FC,memo} from 'react';
 import {HiLockClosed} from 'react-icons/hi';
 import {FaSpinner} from 'react-icons/fa';
-import { Link, useHistory } from 'react-router-dom';
-import {useFormik, yupToFormErrors} from "formik";
+import { Link } from 'react-router-dom';
+import {useFormik,} from "formik";
 import * as yup from "yup";
-import react from 'react';
 import InputBox from '../components/InputBox';
 
 interface Props {

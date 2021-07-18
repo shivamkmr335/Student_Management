@@ -31,22 +31,10 @@ const LoginPage: FC<Props> = (props) => {
   })
   
   return (
-    <div className="min-h-screen w-1/2 flex items-center justify-center bg-gray-50 py-12 px">
+    <div className="min-h-screen w-1/2 flex items-center justify-center bg-gray-50">
       <div className="space-y-8">
-        <div>
-          <img
-            className="mx-auto h-12 w-auto"
-            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-            alt="Workflow"
-          />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Or{' '}
-            <Link to="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
-              start your 14-day free trial
-            </Link>
-          </p>
-        </div>
+      <p className="text-4xl">Log In to <span className="text-blue-500">CORK</span></p>
+      <p className="mt-2 text-lg">New Here? <Link to="/signup" className="text-blue-500 underline">Create an account</Link></p>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit} >
 
           <input type="hidden" name="remember" defaultValue="true" />
@@ -78,17 +66,7 @@ const LoginPage: FC<Props> = (props) => {
           </div>
 
           <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-              />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                Remember me
-              </label>
-            </div>
+            
 
             <div className="text-sm">
               <Link to="/forgot-password" className="font-medium text-indigo-600 hover:text-indigo-500">
@@ -110,6 +88,25 @@ const LoginPage: FC<Props> = (props) => {
             {isSubmitting && <FaSpinner className="animate-spin mt-5"></FaSpinner> }
           </div>
         </form>
+
+        <div className="w-full text-center items-center">
+          <div className="flex">
+              <input
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded "
+              />
+              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-400">
+                keep me logged in
+              </label>
+          </div>
+          <Link to="/forgot-password" className="font-medium w-full text-center text-indigo-600 hover:text-indigo-500">
+                Forgot password?
+          </Link>
+        </div>
+
+        <p className="mt-2">© 2020 All Rights Reserved.<span className="text-blue-500">CORK</span> is a product of <br /> Designreset. <span className="text-blue-500 ">Cookie Preferences, Privacy, and Terms.</span></p>
       </div>
     </div>
   );

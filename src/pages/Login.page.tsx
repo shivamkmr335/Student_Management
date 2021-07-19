@@ -105,7 +105,7 @@ const LoginPage: FC<Props> = (props) => {
           </Link>
         </div>
 
-        <p className="mt-2">© 2020 All Rights Reserved.<span className="text-blue-500">CORK</span> is a product of <br /> Designreset. <span className="text-blue-500 ">Cookie Preferences, Privacy, and Terms.</span></p>
+        <p className="mt-2">© 2020 All Rights Reserved.<Link to="/dashboard" className="text-blue-500">CORK</Link> is a product of <br /> Designreset. <span className="text-blue-500 ">Cookie Preferences, Privacy, and Terms.</span></p>
       </div>
     </div>
   );

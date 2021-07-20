@@ -27,7 +27,7 @@ const Input: FC<Props> = ({touched, error , className, placeholder, id , ...rest
 };
 
 Input.defaultProps = {
-  placeholder: "Enter Your Details"
+  placeholder: "Enter Your Details",
 }
 
 export default  memo(Input);

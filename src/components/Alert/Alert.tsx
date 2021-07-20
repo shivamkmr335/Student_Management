@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {Children, FC,memo} from 'react';
+import { FC,memo} from 'react';
 import { HiX } from 'react-icons/hi';
 
 interface Props {

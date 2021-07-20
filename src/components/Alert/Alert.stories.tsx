@@ -2,8 +2,13 @@ import "../../index.css"
 import Alert from "./Alert";
 
 export default {
-    title: 'Alerts',
+    title: 'My Alerts',
     component: Alert,
+    argTypes: {
+        theme:{
+            control: { type: 'select'}
+        }
+    }
 }
 
 export const main = (args : any) => <Alert {...args}></Alert>

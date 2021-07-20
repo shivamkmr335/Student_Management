@@ -4,6 +4,7 @@ import { FC,memo} from 'react';
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   touched?: boolean;
     error?: string;
+    placeholder?: string;
 }
 
 const Input: FC<Props> = ({touched, error , className, placeholder, id , ...rest}) => {

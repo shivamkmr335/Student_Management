@@ -20,5 +20,5 @@ export const main = (args : any) => <ProgressBar {...args}></ProgressBar>
 
 main.args = {
     progress: 20,
-    
+    size: 'large'
 };

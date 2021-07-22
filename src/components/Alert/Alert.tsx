@@ -16,7 +16,9 @@ const Alert: FC<Props> = ({children, theme, look, className , ...rest}) => {
     else if(theme === 'success'){ themeClasses = "green"} 
     else if(theme === 'warning'){ themeClasses = "yellow"}
     
-    var lookClasses = (look === 'solid')? ` bg-${themeClasses}-500 text-white hover:bg-${themeClasses}-400` :  ` bg-${themeClasses}-100 text-${themeClasses}-600 hover:bg-${themeClasses}-200`
+    var lookClasses = (look === 'solid')? ` bg-${themeClasses}-500 text-white hover:bg-${themeClasses}-400` :  
+      ` bg-${themeClasses}-100 text-${themeClasses}-600 hover:bg-${themeClasses}-200`
+
     var IconThemeClasses = (look ==='solid')? ( ` text-${themeClasses}-200`) : ( ` text-${themeClasses}-600`) 
     const [hide,setHide] =useState("flex");
 

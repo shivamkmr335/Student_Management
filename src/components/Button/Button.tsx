@@ -11,19 +11,20 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: FC<Props> = ({children, className , theme , look , ...rest}) => {
 
     var themeClasses;
-    if(theme === 'primary'){ themeClasses = "primary" }
-    else if(theme === 'danger'){ themeClasses = "danger"} 
-    else if(theme === 'success'){ themeClasses = "success"} 
-    else if(theme === 'secondary'){ themeClasses = "secondary"}
+    if(theme === 'primary'){ themeClasses = "blue" }
+    else if(theme === 'danger'){ themeClasses = "red"} 
+    else if(theme === 'success'){ themeClasses = "green"} 
+    else if(theme === 'secondary'){ themeClasses = "purple"}
     
-    var lookClasses = (look === 'solid')? (" bg-"+themeClasses+" text-white hover:bg-"+themeClasses+" ") : (" border + border-"+themeClasses+" text-"+themeClasses+" hover:bg-"+themeClasses+" ")
+    var lookClasses = (look === 'solid')? (" bg-"+themeClasses+"-500 text-white hover:bg-"+themeClasses+"-400 ") : (" border + border-"+themeClasses+"-600 text-"+themeClasses+"-600 hover:bg-"+themeClasses+"-200 ")
 
-    var IconThemeClasses = (look ==='solid')? (" text-gray-500 ") : ( " text-"+themeClasses+" ") 
+    var IconThemeClasses = (look ==='solid')? (" text-"+themeClasses+"-700 ") : ( " text-"+themeClasses+"-600 ") 
 
   return (
     <button
           {...rest}
-          className= {"group relative w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 " + className + " " + lookClasses}>
+          className= {"group relative w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 " + className + " " + lookClasses}
+          >
           <span className="absolute left-0 inset-y-0 flex items-center pl-3">
             <HiLockClosed className={"h-5 w-5 " + IconThemeClasses} aria-hidden="true" />
           </span>

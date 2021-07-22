@@ -11,32 +11,23 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button: FC<Props> = ({children, className , theme , look , ...rest}) => {
 
-    var themeClasses;
-    if(theme === 'primary'){ themeClasses = "blue" }
-    else if(theme === 'danger'){ themeClasses = "red"} 
-    else if(theme === 'success'){ themeClasses = "green"} 
-    else if(theme === 'secondary'){ themeClasses = "purple"}
+    var themeSolidClasses;
+    var themeOutlineClasses;
 
-    const bgTheme = " bg-"+themeClasses+"-500 "
-    const bgThemeHover = " bg-"+themeClasses+"-400 "
-    const borderTheme = " border-"+themeClasses+"-600 "
-    const textTheme = " text-"+themeClasses+"-600 "
-    const darkTextTheme = " text-"+themeClasses+"-700 "
-    const hollowHoverTheme = " bg-"+themeClasses+"-200 "
-
-
-    
-    var lookClasses = (look === 'solid')? ( " "+bgTheme+" text-white hover:"+bgThemeHover+" ") : (" border "+ borderTheme + textTheme +" hover:"+hollowHoverTheme + " ")
-
-    var IconThemeClasses = (look ==='solid')? (" "+darkTextTheme+" ") : ( " "+textTheme+" ") 
+    if(theme === 'primary'){ themeSolidClasses = "  text-white bg-blue-500 hover:bg-blue-400 " ; themeOutlineClasses =" border-2 border-blue-500 bg-blue-100 text-blue-600 hover:bg-blue-200 "}
+    else if(theme === 'danger'){ themeSolidClasses = "  text-white bg-red-500 hover:bg-red-400 " ; themeOutlineClasses =" border-2 border-red-500 bg-red-100 text-red-600 hover:bg-red-200 "} 
+    else if(theme === 'success'){ themeSolidClasses = "  text-white bg-green-500 hover:bg-green-400 " ; themeOutlineClasses =" border-2 border-green-500 bg-green-100 text-green-600 hover:bg-greeb-200 "} 
+    else if(theme === 'secondary'){ themeSolidClasses = "  text-white bg-purple-500 hover:bg-purple-400 " ; themeOutlineClasses =" border-2 border-purple-500 bg-purple-100 text-purple-600 hover:bg-purple-200 "}
+ 
+    var lookClasses = (look === 'solid')? ( " "+themeSolidClasses+" ") : (" "+ themeOutlineClasses + " ")
 
   return (
     <button
           {...rest}
-          className= {"group relative w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 " + className + " " + lookClasses}
+          className= {"group relative w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 " + className + " " + lookClasses }
           >
           <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-            <HiLockClosed className={"h-5 w-5 " + IconThemeClasses} aria-hidden="true" />
+            <HiLockClosed className="h-5 w-5 " aria-hidden="true" />
           </span>
           {children}
     </button>

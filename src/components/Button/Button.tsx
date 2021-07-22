@@ -6,7 +6,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     theme?: 'primary' | 'secondary' | 'success' | 'danger';
     children: string;
     look?: 'solid' | 'outline';
-    className: string;
+    className?: string;
 }
 
 const Button: FC<Props> = ({children, className , theme , look , ...rest}) => {

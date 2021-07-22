@@ -8,7 +8,10 @@ interface Props {
 
 const Card8: FC<Props> = ({size, NoOfElements}) => {
 
-    var sizeTheme= (size === 'large')? " text-2xl p-2 px-4 right-28 " : ( (size=== 'medium')? " text-lg p-1 px-2 right-24 " : " text-sm px-2 right-24 " )
+    var sizeTheme; 
+    if(size === 'large'){ sizeTheme=" text-2xl p-2 px-4 right-28 " }
+    else if(size=== 'medium'){ sizeTheme=" text-lg p-1 px-2 right-24 " }
+    else { sizeTheme=" text-sm px-2 right-24 " }
 
     const tabs=[
         {imgLink: "https://designreset.com/cork/ltr/demo4/assets/img/profile-12.jpeg"},
@@ -22,11 +25,9 @@ const Card8: FC<Props> = ({size, NoOfElements}) => {
   return (
     <div className="flex flex-row relative bg-gray-100">  
       {tabs.map( function(tab, i){  
-        
         if(i >= NoOfElements || i>4){
             return <></>;
         }
-
         return <Card index={i} size={size} imgLink={tab.imgLink} key={i}></Card>;
         
       })}

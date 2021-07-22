@@ -9,7 +9,6 @@ export default {
 export const main = (args : any) => <Avatar {...args}></Avatar>
 
 main.args = {
-    children: "Sign in",
     className: "",
 
 };

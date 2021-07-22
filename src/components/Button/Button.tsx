@@ -6,21 +6,29 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     theme?: 'primary' | 'secondary' | 'success' | 'danger';
     children: string;
     look?: 'solid' | 'outline';
+    className: string;
 }
 
 const Button: FC<Props> = ({children, className , theme , look , ...rest}) => {
 
     var themeClasses;
-    if(theme === 'primary'){ themeClasses = " bg-blue-500 " }
-    else if(theme === 'danger'){ themeClasses = " bg-red-500 "} 
-    else if(theme === 'success'){ themeClasses = " bg-green-500 "} 
-    else if(theme === 'secondary'){ themeClasses = " bg-purple-500 "}
+    if(theme === 'primary'){ themeClasses = "blue" }
+    else if(theme === 'danger'){ themeClasses = "red"} 
+    else if(theme === 'success'){ themeClasses = "green"} 
+    else if(theme === 'secondary'){ themeClasses = "purple"}
+
+    var bgTheme: string = " bg-"+themeClasses+"-500 "
+    var bgThemeHover: string = " bg-"+themeClasses+"-400 "
+    var borderTheme: string = " border-"+themeClasses+"-600 "
+    var textTheme: string = " text-"+themeClasses+"-600 "
+    var darkTextTheme: string = " text-"+themeClasses+"-700 "
+    var hollowHoverTheme: string = " bg-"+themeClasses+"-200 "
+
 
     
-    
-    var lookClasses = (look === 'solid')? ( themeClasses+" text-white ") : (" border + border-"+themeClasses+"-600 text-"+themeClasses+"-600 hover:bg-"+themeClasses+"-200 ")
+    var lookClasses = (look === 'solid')? ( bgTheme+" text-white hover:"+bgThemeHover) : (" border "+ borderTheme + textTheme +" hover:"+hollowHoverTheme + " ")
 
-    var IconThemeClasses = (look ==='solid')? (" text-"+themeClasses+"-700 ") : ( " text-"+themeClasses+"-600 ") 
+    var IconThemeClasses = (look ==='solid')? (" "+darkTextTheme+" ") : ( " "+textTheme+" ") 
 
   return (
     <button

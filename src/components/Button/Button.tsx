@@ -17,16 +17,16 @@ const Button: FC<Props> = ({children, className , theme , look , ...rest}) => {
     else if(theme === 'success'){ themeClasses = "green"} 
     else if(theme === 'secondary'){ themeClasses = "purple"}
 
-    var bgTheme: string = " bg-"+themeClasses+"-500 "
-    var bgThemeHover: string = " bg-"+themeClasses+"-400 "
-    var borderTheme: string = " border-"+themeClasses+"-600 "
-    var textTheme: string = " text-"+themeClasses+"-600 "
-    var darkTextTheme: string = " text-"+themeClasses+"-700 "
-    var hollowHoverTheme: string = " bg-"+themeClasses+"-200 "
+    const bgTheme = " bg-"+themeClasses+"-500 "
+    const bgThemeHover = " bg-"+themeClasses+"-400 "
+    const borderTheme = " border-"+themeClasses+"-600 "
+    const textTheme = " text-"+themeClasses+"-600 "
+    const darkTextTheme = " text-"+themeClasses+"-700 "
+    const hollowHoverTheme = " bg-"+themeClasses+"-200 "
 
 
     
-    var lookClasses = (look === 'solid')? ( bgTheme+" text-white hover:"+bgThemeHover) : (" border "+ borderTheme + textTheme +" hover:"+hollowHoverTheme + " ")
+    var lookClasses = (look === 'solid')? ( " "+bgTheme+" text-white hover:"+bgThemeHover+" ") : (" border "+ borderTheme + textTheme +" hover:"+hollowHoverTheme + " ")
 
     var IconThemeClasses = (look ==='solid')? (" "+darkTextTheme+" ") : ( " "+textTheme+" ") 
 

@@ -12,14 +12,14 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: FC<Props> = ({children, className , theme , look , ...rest}) => {
 
     var themeClasses;
-    if(theme === 'primary'){ themeClasses = "blue" }
-    else if(theme === 'danger'){ themeClasses = "red"} 
-    else if(theme === 'success'){ themeClasses = "green"} 
-    else if(theme === 'secondary'){ themeClasses = "purple"}
+    if(theme === 'primary'){ themeClasses = "bluee" }
+    else if(theme === 'danger'){ themeClasses = "redd"} 
+    else if(theme === 'success'){ themeClasses = "greenn"} 
+    else if(theme === 'secondary'){ themeClasses = "purplee"}
     
-    var lookClasses = (look === 'solid')? ("bg-"+themeClasses+"-500 text-white hover:bg-"+themeClasses+"-400") : ("border + border-"+themeClasses+"-600 text-"+themeClasses+"-600 hover:bg-"+themeClasses+"-200 ")
+    var lookClasses = (look === 'solid')? (" bg-"+themeClasses+"-500 text-white hover:bg-"+themeClasses+"-400 ") : (" border + border-"+themeClasses+"-600 text-"+themeClasses+"-600 hover:bg-"+themeClasses+"-200 ")
 
-    var IconThemeClasses = (look ==='solid')? (" text-"+themeClasses+"-700") : ( " text-"+themeClasses+"-600") 
+    var IconThemeClasses = (look ==='solid')? (" text-"+themeClasses+"-700 ") : ( " text-"+themeClasses+"-600 ") 
 
   return (
     <button

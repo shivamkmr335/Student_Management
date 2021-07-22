@@ -20,8 +20,8 @@ const Card: FC<Props> = ({size,className,imgLink,index}) => {
 
   return (
     <div className="relative">    
-        <div className={"w-full relative flex  " + hiddenClass + className  }   style={{ right: 24*index+"px" }}>
-            <img className={"inline-block hover:translate-y-2 border-4 border-white " + sizeTheme} src={imgLink} alt="lady icon" />
+        <div className={"w-full relative flex " + hiddenClass + className  }   style={{ right: 24*index+"px" }}>
+            <img className={"inline-block hover:translate-y-2 border-4 border-white rounded-full " + sizeTheme} src={imgLink} alt="lady icon" />
         </div>
     </div>
   );

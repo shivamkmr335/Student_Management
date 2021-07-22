@@ -1,5 +1,4 @@
 import {FC,memo} from 'react';
-import { FaTablets } from 'react-icons/fa';
 import Card from './Card';
 
 interface Props {
@@ -25,7 +24,7 @@ const Card8: FC<Props> = ({size, NoOfElements}) => {
       {tabs.map( function(tab, i){  
         
         if(i >= NoOfElements || i>4){
-            return;
+            return <></>;
         }
 
         return <Card index={i} size={size} imgLink={tab.imgLink} key={i}></Card>;

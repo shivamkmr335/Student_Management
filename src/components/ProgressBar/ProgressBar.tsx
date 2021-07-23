@@ -18,6 +18,7 @@ const ProgressBar: FC<Props> = ({progress,theme}) => {
     else if(progress > 30 ){gradientColor=" to-green-600 " ; colorTheme = " bg-green-600 "}
     else if(progress > 20 ){gradientColor=" to-green-600 " ; colorTheme = " bg-green-400 "}
     else if(progress > 10 ){gradientColor=" to-blue-600 " ; colorTheme = " bg-blue-600 "}
+    else {gradientColor=" to-blue-600 " ; colorTheme = " bg-blue-600 "}
 
     var bgTheme= (theme === 'gradient')? " bg-gradient-to-r from-gray-200 " + gradientColor : colorTheme;
 

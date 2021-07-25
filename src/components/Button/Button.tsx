@@ -1,6 +1,8 @@
 import { ButtonHTMLAttributes } from 'react';
 import {FC,memo} from 'react';
+import { IconType } from 'react-icons';
 import { HiLockClosed } from 'react-icons/hi';
+import { IconBase } from 'react-icons/lib';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     theme?: 'primary' | 'secondary' | 'success' | 'danger';
@@ -8,9 +10,10 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     look?: 'solid' | 'outline';
     className?: string;
     Enable?: boolean;
+    Icon?: IconType;
 }
 
-const Button: FC<Props> = ({children, className, Enable , theme , look , ...rest}) => {
+const Button: FC<Props> = ({children, className, Enable , theme , look , Icon , ...rest}) => {
 
     var themeSolidClasses;
     var themeOutlineClasses;
@@ -25,11 +28,16 @@ const Button: FC<Props> = ({children, className, Enable , theme , look , ...rest
   return (
     <button
           {...rest}
-          className= {"group relative w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 " + className + " " + lookClasses }
+          className= {"group relative px-12 flex justify-center py-2 px-4 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 " + className + " " + lookClasses }
           >
-          <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-            <HiLockClosed className="h-5 w-5 " aria-hidden="true" />
-          </span>
+          {
+            Icon && (
+              <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+                <Icon className="h-5 w-5 " aria-hidden="true" />
+              </span>
+            )
+          }
+          
           {children}
     </button>
   );
@@ -39,7 +47,8 @@ Button.defaultProps = {
     theme: 'primary',
     children: "",
     look : 'solid',
-    Enable: true
+    Enable: true,
+    Icon: HiLockClosed,
 }
 
 export default  memo(Button);

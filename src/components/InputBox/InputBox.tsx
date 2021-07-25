@@ -5,6 +5,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   touched?: boolean;
     error?: string;
     placeholder?: string;
+    id?: string;
 }
 
 const Input: FC<Props> = ({touched, error , className, placeholder, id , ...rest}) => {
@@ -17,7 +18,7 @@ const Input: FC<Props> = ({touched, error , className, placeholder, id , ...rest
         <input
             id={id}
             {...rest}
-            className={"appearance-none rounded-none relative block w-full px-3 py-2 my-3 border-b border-gray-500 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" + className }
+            className={"appearance-none rounded-none relative block  px-3 py-2 my-3 border-b border-gray-500 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" + className }
             placeholder={placeholder}
         />
         </div>

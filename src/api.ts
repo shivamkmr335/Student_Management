@@ -1,5 +1,4 @@
 import axios from "axios";
-import { config } from "process";
 
 axios.interceptors.request.use((config)=> {
 
@@ -65,9 +64,6 @@ interface GroupRequest {
     status: "all-groups" | "favourite" | "achieved";
 }
 
-interface GroupResponse{
-
-}
 
 export const fetchGroups= (data: GroupRequest) =>{
     const url = BASE_URL + "/groups";

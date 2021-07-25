@@ -1,16 +1,20 @@
 import {FC,memo} from 'react';
 import {HiLockClosed} from 'react-icons/hi';
+import {useHistory} from "react-router-dom";
 import {FaSpinner} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import {useFormik} from "formik";
 import * as yup from "yup";
 import InputBox from '../components/InputBox/InputBox';
 import Button from '../components/Button/Button';
+import { login } from '../api';
 
 interface Props {
 }
 
 const LoginPage: FC<Props> = (props) => {
+
+  const history=useHistory();
 
   const {handleSubmit , getFieldProps , touched , isSubmitting , errors} = useFormik({
     initialValues: {
@@ -19,19 +23,17 @@ const LoginPage: FC<Props> = (props) => {
     },
     validationSchema: yup.object().shape({
       email: yup.string().required().email(),
-      password: yup.string().required().min(8, (min)=> "Atleast" + min+ " characters" )
+      password: yup.string().required().min(8,"Password must have atleat 8 characters" )
     }),
-    onSubmit: (data , { setSubmitting })=> {
-      console.log("form submitting",data);
-      setTimeout(()=>{
-        console.log("Form submitted successfully");
-        setSubmitting(false);
-      },5000)
+    onSubmit: (data)=> {
+      login(data).then(()=>{
+        history.push("/dashboard");
+      })
     }
   })
   
   return (
-    <div className="min-h-screen w-1/2 flex items-center justify-center bg-gray-50">
+    <div className="min-h-screen lg:w-1/2 w-screen  flex items-center justify-center bg-gray-50">
       <div className="space-y-8">
       <p className="text-4xl">Log In to <span className="text-blue-500">CORK</span></p>
       <p className="mt-2 text-lg">New Here? <Link to="/signup" className="text-blue-500 underline">Create an account</Link></p>
@@ -82,7 +84,7 @@ const LoginPage: FC<Props> = (props) => {
         </form>
 
         <div className="w-full text-center items-center">
-          <div className="flex">
+          <div className="flex mb-8">
               <input
                 id="remember-me"
                 name="remember-me"
@@ -93,12 +95,12 @@ const LoginPage: FC<Props> = (props) => {
                 keep me logged in
               </label>
           </div>
-          <Link to="/forgot-password" className="font-medium w-full text-center text-indigo-600 hover:text-indigo-500">
+          <Link to="/forgot-password" className="font-medium w-full text-center text-indigo-600 mt-12 hover:text-indigo-500">
                 Forgot password?
           </Link>
         </div>
 
-        <p className="mt-2">© 2020 All Rights Reserved.<Link to="/dashboard" className="text-blue-500">CORK</Link> is a product of <br /> Designreset. <span className="text-blue-500 ">Cookie Preferences, Privacy, and Terms.</span></p>
+        <p className="mt-4">© 2020 All Rights Reserved.<Link to="/dashboard" className="text-blue-500">CORK</Link> is a product of <br /> Designreset. <span className="text-blue-500 ">Cookie Preferences, Privacy, and Terms.</span></p>
       </div>
     </div>
   );

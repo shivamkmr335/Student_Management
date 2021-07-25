@@ -11,5 +11,5 @@ export const main = (args : any) => <Button {...args}></Button>
 main.args = {
     children: "Sign in",
     className: "",
-
+    Enable: true
 };

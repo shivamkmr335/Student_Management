@@ -10,7 +10,7 @@ const Card8: FC<Props> = ({size, NoOfElements}) => {
 
     var sizeTheme; 
     if(size === 'large'){ sizeTheme=" text-2xl p-2 px-4 right-28 h-12 " }
-    else if(size=== 'medium'){ sizeTheme=" text-lg p-1 px-2 right-24 h-10 " }
+    else if(size=== 'medium'){ sizeTheme=" text-lg p-1 px-2 right-24 h-10 " }      
     else { sizeTheme=" text-sm px-2 right-24 h-6 " }
 
     const tabs=[

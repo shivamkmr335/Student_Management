@@ -1,5 +1,6 @@
 import {FC,memo} from 'react';
 import {HiLockClosed} from 'react-icons/hi';
+import {useHistory} from 'react-router-dom';
 import {FaSpinner} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import {useFormik,} from "formik";
@@ -11,6 +12,9 @@ interface Props {
 }
 
 const SignupPage: FC<Props> = (props) => {
+
+  const history=useHistory();
+
   const {handleSubmit , getFieldProps , touched , isSubmitting , errors} = useFormik({
     initialValues: {
       email: "",
@@ -27,6 +31,7 @@ const SignupPage: FC<Props> = (props) => {
       setTimeout(()=>{
         console.log("Form submitted successfully");
         setSubmitting(false);
+        history.push('/dashboard')
       },5000)
     }
   })

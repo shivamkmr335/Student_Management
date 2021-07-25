@@ -6,7 +6,7 @@ interface Props {
 
 const AuthHero: FC<Props> = (props) => {
   return (
-    <div className="h-screen w-1/2 bg-black flex items-center justify-center">
+    <div className="h-screen w-0 lg:w-1/2 bg-black flex items-center justify-center">
       <DiCss3 className="text-yellow-500 h-64 w-64" />
     </div>
   );

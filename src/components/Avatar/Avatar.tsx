@@ -5,9 +5,10 @@ interface Props {
     status: 'offline' | 'online';
     border: 'square' | 'circle';
     className: string;
+    imgUrl: string;
 }
 
-const Avatar: FC<Props> = ({size,status,border,className}) => {
+const Avatar: FC<Props> = ({size,status,border,imgUrl,className}) => {
 
     var sizeTheme= (size === 'large')? " h-24 w-24 " : ( (size=== 'medium')? " h-16 w-16 " : " h-12 w-12 " )
 
@@ -22,7 +23,7 @@ const Avatar: FC<Props> = ({size,status,border,className}) => {
   return (
     <div>    
         <div className={"w-full relative mt-12 flex justify-center items-end " + className }>
-            <img className={borderTheme + sizeTheme} src="https://designreset.com/cork/ltr/demo4/assets/img/profile-12.jpeg" alt="lady icon" />
+            <img className={borderTheme + sizeTheme} src={imgUrl} alt="lady icon" />
             {status!==undefined && <div className= { "border-white rounded-full inline-block relative " + IconSizeTheme + IconColorTheme } ></div> }
         </div>
     </div>
@@ -33,7 +34,8 @@ const Avatar: FC<Props> = ({size,status,border,className}) => {
 Avatar.defaultProps = {
     status: undefined,
     border: 'circle',
-    size: 'large'
+    size: 'large',
+    imgUrl: "https://designreset.com/cork/ltr/demo4/assets/img/profile-12.jpeg"
 
 }
 

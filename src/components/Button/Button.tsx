@@ -7,9 +7,10 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: string;
     look?: 'solid' | 'outline';
     className?: string;
+    Enable?: boolean;
 }
 
-const Button: FC<Props> = ({children, className , theme , look , ...rest}) => {
+const Button: FC<Props> = ({children, className, Enable , theme , look , ...rest}) => {
 
     var themeSolidClasses;
     var themeOutlineClasses;
@@ -37,7 +38,8 @@ const Button: FC<Props> = ({children, className , theme , look , ...rest}) => {
 Button.defaultProps = {
     theme: 'primary',
     children: "",
-    look : 'solid'
+    look : 'solid',
+    Enable: true
 }
 
 export default  memo(Button);

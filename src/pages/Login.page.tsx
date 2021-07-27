@@ -6,7 +6,8 @@ import {useFormik} from "formik";
 import * as yup from "yup";
 import InputBox from '../components/InputBox/InputBox';
 import Button from '../components/Button/Button';
-import { login } from '../api';
+import { login } from '../api/auth';
+
 
 interface Props {
 }

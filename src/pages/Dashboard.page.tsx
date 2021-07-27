@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useEffect ,FC,memo} from 'react';
 import { Link } from 'react-router-dom';
-import { fetchGroups, logout } from '../api';
 import Button from '../components/Button/Button';
 import InputBox from '../components/InputBox/InputBox';
 import UserList from '../components/UserList/UserList';
 import {useFormik} from "formik";
 import { IoIosLogOut } from "react-icons/io";
 import { HiSearch } from 'react-icons/hi';
+import { logout } from '../api/auth';
+import { fetchGroups } from '../api/group';
 
 interface Props {
 }
@@ -55,12 +56,12 @@ const Dashboard: FC<Props> = (props) => {
               error= {errors.searchKeyword}
             ></InputBox>            
           </div>
-          <Button className="text-2xl" theme="secondary" look="solid" Icon={HiSearch}>Search</Button>
+          <Button className="text-2xl h-12" theme="secondary" look="solid" Icon={HiSearch}>Search</Button>
       </form>
 
       <ul className="ml-8 my-12 p-2 bg-gray-300 text-2xl w-full">
-        {groups.map((group:any, index: number) => {
-          return <UserList name={group.name} description={group.description} index={index} ></UserList>
+        {groups.map((group:any, key:number) => {
+          return <UserList name={group.name} description={group.description} index={key} ></UserList>
         })}
       </ul>
     </div>

@@ -1,7 +1,7 @@
 import {FC,memo} from 'react';
 import { HiOutlineBell, HiOutlineMail, HiOutlineMenu } from 'react-icons/hi';
 import { IoIosLogOut } from "react-icons/io";
-import { logout } from '../api';
+import { logout } from '../api/auth';
 
 interface Props {
 }

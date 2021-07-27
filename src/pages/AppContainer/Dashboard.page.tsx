@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useEffect ,FC,memo} from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../components/Button/Button';
-import InputBox from '../components/InputBox/InputBox';
-import UserList from '../components/UserList/UserList';
+import Button from '../../components/Button/Button';
+import InputBox from '../../components/InputBox/InputBox';
+import UserList from '../../components/UserList/UserList';
 import {useFormik} from "formik";
 import { IoIosLogOut } from "react-icons/io";
 import { HiSearch } from 'react-icons/hi';
-import { logout } from '../api/auth';
-import { fetchGroups } from '../api/group';
+import { logout } from '../../api/auth';
+import { fetchGroups } from '../../api/group';
 
 interface Props {
 }

@@ -1,7 +1,7 @@
 import {FC,memo} from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Header from '../components/Header';
-import SideBar from '../components/SideBar';
+import Header from '../../components/Header';
+import SideBar from '../../components/SideBar';
 import DashboardPage from './Dashboard.page';
 import LecturePage from './Lecture.page';
 import RecordingsPage from './Recordings.page';

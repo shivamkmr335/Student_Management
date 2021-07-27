@@ -1,10 +1,11 @@
 import { FC , lazy , memo, Suspense} from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { LS_LOGIN_TOKEN } from './api/base';
+import AppContainerPageLazy from './pages/AppContainer/AppContainer.lazy';
+import AuthPageLazy from './pages/Auth/Auth.lazy';
 import NotFoundPage from './pages/NotFound.page';
 
-const AppContainerPageLazy = lazy(()=> import("./pages/AppContainer.page"));
-const AuthPageLazy = lazy(()=> import("./pages/Auth.page"));
+
 
 
 interface Props {

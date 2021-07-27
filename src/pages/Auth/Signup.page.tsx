@@ -4,8 +4,8 @@ import {FaSpinner} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import {useFormik,} from "formik";
 import * as yup from "yup";
-import InputBox from '../components/InputBox/InputBox';
-import Button from '../components/Button/Button';
+import InputBox from '../../components/InputBox/InputBox';
+import Button from '../../components/Button/Button';
 
 interface Props {
 }
@@ -92,7 +92,7 @@ const SignupPage: FC<Props> = (props) => {
           </div>
 
           <div>
-          <Button theme="secondary" look="solid">Sign Up</Button>
+          <Button theme="secondary" look="solid" type="submit">Sign Up</Button>
             {isSubmitting && <FaSpinner className="animate-spin mt-5"></FaSpinner> }
           </div>
         </form>

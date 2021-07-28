@@ -21,7 +21,6 @@ interface LoginResponse{
 export const login = (data: LoginRequest) => {
     const url = BASE_URL + "/login";
 
-
     return axios.post<LoginResponse>(url,data).then(
         (response) => {
             console.log(response.data.token);
@@ -33,6 +32,15 @@ export const login = (data: LoginRequest) => {
 export const logout = ()=>{
     localStorage.removeItem(LS_LOGIN_TOKEN);
 
+}
+
+interface MeResponse{
+    data: User;
+}
+
+export const me = ()=> {
+    const url = BASE_URL + "/me";
+    return axios.get<MeResponse>(url).then(response => response.data.data);
 }
 
 

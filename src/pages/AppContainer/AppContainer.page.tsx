@@ -21,7 +21,7 @@ const AppContainer: FC<Props> = (props) => {
           <DashboardPage></DashboardPage>
         </Route>
         <Route path="/recordings">
-          <RecordingsPage></RecordingsPage>
+          <RecordingsPage ></RecordingsPage>
         </Route>
         <Route path="/lecture/:lectureNumber">
           <LecturePage></LecturePage>

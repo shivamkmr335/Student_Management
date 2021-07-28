@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { ButtonHTMLAttributes } from 'react';
 import {FC,memo} from 'react';
 import { IconType } from 'react-icons';
@@ -27,7 +28,7 @@ const Button: FC<Props> = ({children, className, Enable , theme , look , Icon , 
   return (
     <button
           {...rest}
-          className= {"group relative px-12 flex justify-center py-2 px-4 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 " + className + " " + lookClasses }
+          className= { classNames( "group relative px-12 flex justify-center py-2 px-4 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:cursor-not-allowed " ,className , lookClasses  ) }
           >
           {
             Icon && (

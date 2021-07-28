@@ -2,11 +2,13 @@ import {FC,memo} from 'react';
 import {useHistory} from "react-router-dom";
 import {FaSpinner} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import {useFormik} from "formik";
+import {useFormik } from "formik";
 import * as yup from "yup";
 import InputBox from '../../components/InputBox/InputBox';
 import Button from '../../components/Button/Button';
 import { login } from '../../api/auth';
+import { useContext } from 'react';
+import AppContext from '../../App.context';
 
 
 interface Props {
@@ -15,18 +17,21 @@ interface Props {
 const LoginPage: FC<Props> = (props) => {
 
   const history=useHistory();
+  const {setUser} = useContext(AppContext);
 
-  const {handleSubmit , getFieldProps , touched , isSubmitting , errors} = useFormik({
+  const {handleSubmit , getFieldProps , touched , isSubmitting , errors , isValid} = useFormik({
     initialValues: {
       email: "",
       password: ""
     },
+    isInitialValid: false,
     validationSchema: yup.object().shape({
       email: yup.string().required().email(),
       password: yup.string().required().min(8,"Password must have atleat 8 characters" )
     }),
     onSubmit: (data)=> {
-      login(data).then(()=>{
+      login(data).then((u)=>{
+        setUser(u);
         history.push("/dashboard");
       })
     }
@@ -78,7 +83,7 @@ const LoginPage: FC<Props> = (props) => {
           </div>
 
           <div>
-            <Button theme="secondary" look="solid" type="submit" >Sign Up</Button>
+            <Button theme="secondary" look="solid" type="submit" disabled={!isValid}>Sign Up</Button>
             {isSubmitting && <FaSpinner className="animate-spin mt-5"></FaSpinner> }
           </div>
         </form>

@@ -1,0 +1,18 @@
+state     -> our data that needs to be managed
+store     -> An object from Redux library that manages our state.
+Action    -> An application to change data (Takes Action Type {string} and Payload {data} as parameters)
+Reducer   -> Function which takes current state and action in params and returns new state
+Selector  -> Function which takes whole state and returns needed part of it (Used to fetch required state data from store )
+
+
+
+
+
+
+
+
+
+
+
+Step 1: Install redux       -> npm i redux react-redux
+Step 2: Install React Types -> npm install @types/react-redux @types/redux

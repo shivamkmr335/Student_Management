@@ -31,7 +31,6 @@ export const login = (data: LoginRequest) => {
 
 export const logout = ()=>{
     localStorage.removeItem(LS_LOGIN_TOKEN);
-
 }
 
 interface MeResponse{

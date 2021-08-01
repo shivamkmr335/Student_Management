@@ -1,14 +1,15 @@
-import { useContext } from 'react';
 import {FC,memo} from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import  AppContext from '../../App.context';
+import { User } from '../../models/User';
+import { AppState } from '../../store';
 
 interface Props {
 }
 
 const Recordings: FC<Props> = (props) => {
 
-  const {user} = useContext(AppContext)
+  const user= useSelector<AppState, User | undefined>(state => state.me);
 
   return (
     <>

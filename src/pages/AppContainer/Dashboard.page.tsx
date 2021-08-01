@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useEffect ,FC,memo} from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../components/Button/Button';
@@ -9,17 +8,21 @@ import { IoIosLogOut } from "react-icons/io";
 import { HiSearch } from 'react-icons/hi';
 import { logout } from '../../api/auth';
 import { fetchGroups } from '../../api/group';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppState } from '../../store';
+import { Group } from '../../models/Group';
 
 interface Props {
 }
 
 const Dashboard: FC<Props> = (props) => {
 
-  const [groups, setGroups] = useState<any>([])
+  const groups= useSelector<AppState, Group[] | undefined>((state) => state.groups);
+  const dispatch = useDispatch();
   
   useEffect(()=>{
     fetchGroups({status: "all-groups"})
-    .then((group)=> setGroups(group));
+    .then((group)=> dispatch({type: "groups/fetch", payload:group}));
   }, []);
 
   const {handleSubmit , getFieldProps , touched  , errors} = useFormik({
@@ -29,9 +32,11 @@ const Dashboard: FC<Props> = (props) => {
     onSubmit: (data)=> {
       console.log(data.searchKeyword);
       fetchGroups({status: "all-groups", query: data.searchKeyword })
-      .then((group)=> setGroups(group));
+      .then((group)=> dispatch({type: "groups/fetch", payload:group}));
     }
   })
+
+  console.log(groups);
 
   return (
     <div className="w-3/4">
@@ -60,7 +65,7 @@ const Dashboard: FC<Props> = (props) => {
       </form>
 
       <ul className="ml-8 my-12 p-2 bg-gray-300 text-2xl w-full">
-        {groups.map((group:any, key:number) => {
+        {groups && groups.map((group:any, key:number) => {
           return <UserList name={group.name} description={group.description} index={key} ></UserList>
         })}
       </ul>

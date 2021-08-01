@@ -1,8 +1,9 @@
-import { AnyAction, createStore } from "redux";
+import { TypedUseSelectorHook, useSelector } from "react-redux";
+import { AnyAction, createStore , Reducer } from "redux";
 import { Group } from "./models/Group";
 import { User } from "./models/User";
 
-interface AppState {
+export interface AppState {
     me?: User,
     groups: Group[],
     isSidebarOpen: boolean
@@ -14,13 +15,19 @@ const initialState: AppState = {
     isSidebarOpen: true
 }
 
-const reducer = ( currentState = initialState , dispatchedAction: AnyAction ) =>{
+const reducer: Reducer<AppState> = ( currentState = initialState , dispatchedAction: AnyAction ) => {
     switch(dispatchedAction.type){
         
-        case 'me/login' : return { ...currentState , me: dispatchedAction.payload };
+        case 'me/login' :
+        case 'me/fetch' : return { ...currentState , me: dispatchedAction.payload };
+        case 'groups/fetch' : return { ...currentState , groups: dispatchedAction.payload };
  
         default: return currentState;
     }
 }
 
-export const store = createStore(reducer);
+export const meFetchAction = (u: User)=> ({type: "me/fetch", payload:u});
+
+export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
+
+export const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() );

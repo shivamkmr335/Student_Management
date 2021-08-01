@@ -1,14 +1,13 @@
-import { useEffect } from 'react';
-import { FC  , memo, Suspense, useState} from 'react';
+import { FC  , memo, Suspense, useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { me } from './api/auth';
-import { LS_LOGIN_TOKEN } from './api/base';
-import AppContext from './App.context';
+import { LS_LOGIN_TOKEN } from './api/base'; 
 import { User } from './models/User';
 import AppContainerPageLazy from './pages/AppContainer/AppContainer.lazy';
 import AuthPageLazy from './pages/Auth/Auth.lazy';
 import NotFoundPage from './pages/NotFound.page';
-
+import { AppState, meFetchAction } from './store';
 
 
 
@@ -17,7 +16,8 @@ interface Props {
 
 const App: FC<Props> = (props) => {
 
-  const [user, setUser] = useState<User>();
+  const user= useSelector<AppState, User | undefined>((state) => state.me);
+  const dispatch = useDispatch();
   
   const token=localStorage.getItem(LS_LOGIN_TOKEN);
 
@@ -26,7 +26,7 @@ const App: FC<Props> = (props) => {
     if(!token){
       return;
     }
-    me().then((u) => setUser(u));
+    me().then((u) => dispatch(meFetchAction(u)));
   }, []); //Empty Dependency
 
   console.log("App rendering and token is "+ token);
@@ -36,7 +36,7 @@ const App: FC<Props> = (props) => {
   }
 
   return (
-    <AppContext.Provider value={{user,setUser}}>
+    
       <Suspense fallback={
         <div className="text-red-500 ">Loading Page...</div>
       }>
@@ -57,7 +57,6 @@ const App: FC<Props> = (props) => {
             </Switch>
       </BrowserRouter>
     </Suspense>
-  </AppContext.Provider>
   );
 };
 

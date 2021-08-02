@@ -5,14 +5,21 @@ import { User } from "./models/User";
 
 export interface AppState {
     me?: User,
-    groups: Group[],
-    isSidebarOpen: boolean
+    isSidebarOpen: boolean,
+
+    groupQuery:string,
+    groupQueryMap: {[keyword: string]:number[]};
+
+    groups: { [id:number]: Group},
 }
 
 const initialState: AppState = {
     me: undefined,
-    groups: [],
-    isSidebarOpen: true
+    isSidebarOpen: true,
+
+    groupQuery: "",
+    groupQueryMap: {},
+    groups: {},
 }
 
 const reducer: Reducer<AppState> = ( currentState = initialState , dispatchedAction: AnyAction ) => {
@@ -20,8 +27,21 @@ const reducer: Reducer<AppState> = ( currentState = initialState , dispatchedAct
         
         case 'me/login' :
         case 'me/fetch' : return { ...currentState , me: dispatchedAction.payload };
-        case 'groups/fetch' : return { ...currentState , groups: dispatchedAction.payload };
- 
+        case 'groups/query' : return { ...currentState , groupQuery: dispatchedAction.payload };
+        case 'groups/fetch' : 
+            const groups = dispatchedAction.payload.groups as Group[];
+            const groupIds = groups.map((g) => g.id);
+
+            const groupMap = groups.reduce((prev, group) => {
+                return {...prev, [group.id]: group}
+            },{});
+
+            return {
+                ...currentState,
+                groupQueryMap: { ...currentState.groupQueryMap, [dispatchedAction.payload.query]:groupIds },
+                groups: {...currentState.groups, ...groupMap}
+            };
+
         default: return currentState;
     }
 }

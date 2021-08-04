@@ -1,0 +1,34 @@
+Symtax=>  
+        const x=  useCallBack(() => console.log(user) , [] );
+
+Note:   This callBack return a function to X and doesn't run the function itself.
+        So when we call x() then console log is done.
+
+Passing Dependency To a callBack.
+Syntax=>  
+        const x=  useCallBack(() => console.log(user) , [Dependecy1, Dependency2] );
+
+Note:   So every time the Dependency are changed the updated value of User gets assigned to X.
+        And the value of this User doesn't get updated till a Dependecy is changed.
+        Thus this X stores the value of User at the time of defining.
+ 
+
+
+Similar to This:
+
+const pqr = (UserId: number) => {
+    const xyz = () => {
+        UserId++;
+        console.log(UserId);
+    }
+    return xyz;
+}
+
+const output1= pqr(10);
+const output2= pqr(100);
+
+output1(); => 11
+output2(); => 101
+
+output1(); => 12
+output2(); => 102

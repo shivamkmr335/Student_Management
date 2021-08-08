@@ -7,7 +7,7 @@ import * as yup from "yup";
 import InputBox from '../../components/InputBox/InputBox';
 import Button from '../../components/Button/Button';
 import { login } from '../../api/auth';
-import { useDispatch } from 'react-redux';
+import { authActions } from '../../actions/auth.actions';
 
 
 
@@ -17,7 +17,6 @@ interface Props {
 
 const LoginPage: FC<Props> = (props) => {
 
-  const dispatch = useDispatch();
   const history=useHistory();
 
   const {handleSubmit , getFieldProps , touched , isSubmitting , errors , isValid} = useFormik({
@@ -32,7 +31,7 @@ const LoginPage: FC<Props> = (props) => {
     }),
     onSubmit: (data)=> {
       login(data).then((u)=>{
-        dispatch({type: "me/login", payload:u})
+        authActions.login(u);
         history.push("/dashboard");
       })
     }

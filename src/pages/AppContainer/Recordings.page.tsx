@@ -1,15 +1,13 @@
 import {FC,memo} from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { User } from '../../models/User';
-import { AppState, useAppSelector } from '../../store';
+import { useAppSelector } from '../../store';
 
 interface Props {
 }
 
 const Recordings: FC<Props> = (props) => {
 
-  const userFirstName= useAppSelector(state => state.me?.first_name);
+  const userFirstName= useAppSelector((state) => state.users.byId[state.auth.id!].first_name);
 
   return (
     <>

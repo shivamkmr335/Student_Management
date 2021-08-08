@@ -1,13 +1,12 @@
 import { FC  , memo, Suspense, useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { authActions } from './actions/auth.actions';
 import { me } from './api/auth';
 import { LS_LOGIN_TOKEN } from './api/base'; 
-import { User } from './models/User';
 import AppContainerPageLazy from './pages/AppContainer/AppContainer.lazy';
 import AuthPageLazy from './pages/Auth/Auth.lazy';
 import NotFoundPage from './pages/NotFound.page';
-import { AppState, meFetchAction } from './store';
+import {  useAppSelector } from './store';
 
 
 
@@ -16,8 +15,7 @@ interface Props {
 
 const App: FC<Props> = (props) => {
 
-  const user= useSelector<AppState, User | undefined>((state) => state.me);
-  const dispatch = useDispatch();
+  const user= useAppSelector((state) => state.auth.id && state.users.byId[state.auth.id]);
   
   const token=localStorage.getItem(LS_LOGIN_TOKEN);
 
@@ -26,7 +24,7 @@ const App: FC<Props> = (props) => {
     if(!token){
       return;
     }
-    me().then((u) => dispatch(meFetchAction(u)));
+    me().then((u) => authActions.fetch(u));
   }, []); //Empty Dependency
 
   console.log("App rendering and token is "+ token);

@@ -3,6 +3,8 @@ import InputBox from '../../components/InputBox/InputBox';
 import UserList from '../../components/UserList/UserList';
 import { fetchGroups } from '../../api/group';
 import {  store, useAppSelector } from '../../store';
+import { GROUPS_QUERY_COMPLETED } from '../../actions/actions.constants';
+import { groupActions } from '../../actions/groups.actions';
 
 interface Props {
 }
@@ -14,7 +16,6 @@ const Dashboard: FC<Props> = (props) => {
   const groups= useAppSelector(state =>{
     const groupIds = state.groups.queryMap[state.groups.query] || [];
     return groupIds.map(id => {
-      console.log(id);
       return state.groups.byId[id]});
   })
   
@@ -22,9 +23,8 @@ const Dashboard: FC<Props> = (props) => {
   useEffect(()=>{
     fetchGroups({status: "all-groups", query})
     .then((groups)=> {
-      console.log("data fetch from Api",groups);
       store.dispatch({
-        type: "groups/fetch", 
+        type: GROUPS_QUERY_COMPLETED, 
         payload: {groups:groups, query: query}
       })
     }
@@ -37,7 +37,7 @@ const Dashboard: FC<Props> = (props) => {
     <div className="w-3/4">
       <div className="flex justify-between">
         <InputBox type="text" value={query} onChange={(e) => {
-          store.dispatch({type: "groups/query", payload: e.target.value})
+          groupActions.query(e.target.value)
         }}></InputBox>
       </div>
 

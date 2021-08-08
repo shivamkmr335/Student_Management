@@ -1,4 +1,5 @@
 import { Reducer } from "redux";
+import { GROUPS_QUERY, GROUPS_QUERY_COMPLETED } from "../actions/actions.constants";
 import { Group } from "../models/Group";
 
 export interface GroupState {
@@ -17,9 +18,9 @@ const initialState ={
 
 export const groupReducer: Reducer<GroupState>= (state = initialState, action) => {
     switch (action.type){
-        case 'groups/query' : 
+        case GROUPS_QUERY : 
             return { ...state , query: action.payload };
-        case 'groups/fetch' : 
+        case GROUPS_QUERY_COMPLETED : 
             const groups = action.payload.groups as Group[];
             const groupIds = groups.map((g) => g.id);
     

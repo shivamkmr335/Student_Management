@@ -6,6 +6,7 @@ import { LS_LOGIN_TOKEN } from './api/base';
 import AppContainerPageLazy from './pages/AppContainer/AppContainer.lazy';
 import AuthPageLazy from './pages/Auth/Auth.lazy';
 import NotFoundPage from './pages/NotFound.page';
+import { meSelector } from './selectors/auth.selectors';
 import {  useAppSelector } from './store';
 
 
@@ -15,7 +16,7 @@ interface Props {
 
 const App: FC<Props> = (props) => {
 
-  const user= useAppSelector((state) => state.auth.id && state.users.byId[state.auth.id]);
+  const user= useAppSelector(meSelector);
   
   const token=localStorage.getItem(LS_LOGIN_TOKEN);
 

@@ -5,19 +5,16 @@ import { fetchGroups } from '../../api/group';
 import {  store, useAppSelector } from '../../store';
 import { GROUPS_QUERY_COMPLETED } from '../../actions/actions.constants';
 import { groupActions } from '../../actions/groups.actions';
+import { groupQuerySelector, groupsSelector } from '../../selectors/group.selectors';
 
 interface Props {
 }
 
 const Dashboard: FC<Props> = (props) => {
 
-  const query= useAppSelector(state => state.groups.query);
+  const query= useAppSelector(groupQuerySelector);
 
-  const groups= useAppSelector(state =>{
-    const groupIds = state.groups.queryMap[state.groups.query] || [];
-    return groupIds.map(id => {
-      return state.groups.byId[id]});
-  })
+  const groups= useAppSelector(groupsSelector);
   
   
   useEffect(()=>{

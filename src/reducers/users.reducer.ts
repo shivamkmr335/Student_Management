@@ -18,7 +18,7 @@ export const userReducer: Reducer<UserState> = (state= initialState,action)=> {
         case ME_FETCH:
         case ME_LOGIN:
             const user = action.payload as User;
-            return {...state, byId: { ...state.byId , [user.id]: user}};
+            return {...state, byId: { ...state.byId , [user.id!]: user}};
         default: 
             return state;
     }

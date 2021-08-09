@@ -48,7 +48,6 @@ Button.defaultProps = {
     children: "",
     look : 'solid',
     Enable: true,
-    Icon: HiLockClosed,
 }
 
 export default  memo(Button);

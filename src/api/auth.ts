@@ -42,6 +42,18 @@ export const me = ()=> {
     return axios.get<MeResponse>(url).then(response => response.data.data);
 }
 
+export const updateUser = (data: User)=>{
+    const url = BASE_URL + "/me";
+
+    return axios.put(url,data)
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
+
 
 //Work Simplified By Axios
     // return fetch(url , {

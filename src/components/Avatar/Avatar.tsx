@@ -22,7 +22,7 @@ const Avatar: FC<Props> = ({size,status,border,imgUrl,className}) => {
 
   return (
     <div>    
-        <div className={"w-full relative flex justify-center items-end " + className }>
+        <div className={" relative flex justify-center items-end " + className }>
             <img className={borderTheme + sizeTheme} src={imgUrl} alt="lady icon" />
             {status!==undefined && <div className= { "border-white rounded-full inline-block relative " + IconSizeTheme + IconColorTheme } ></div> }
         </div>

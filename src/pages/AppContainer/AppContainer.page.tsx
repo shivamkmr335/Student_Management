@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import {FC,memo} from 'react';
+import { HiOutlineMenu } from 'react-icons/hi';
 import { Route, Switch } from 'react-router-dom';
 import Header from '../../components/Header';
 import SideBar from '../../components/SideBar';
@@ -14,11 +16,16 @@ interface Props {
 
 const AppContainer: FC<Props> = (props) => {
 
+  const [isSideBarOpen , setSideBarOpen] = useState(true);
+
   return (
-    <>
+    <div className="bg-gray-400">
+    
     <Header/>
-    <div className="flex flex-row">
-      <SideBar></SideBar>
+    <button className=" h-6 relative -top-9 " onClick={()=> {setSideBarOpen(!isSideBarOpen)}}><HiOutlineMenu className="h-6 w-6 ml-8 text-gray-600"></HiOutlineMenu></button>
+    <div className="flex flex-row relative -top-9">
+    
+      <SideBar visible={isSideBarOpen} onClose={setSideBarOpen}></SideBar>
       <Switch>
         <Route path="/dashboard">
           <DashboardPage></DashboardPage>
@@ -40,7 +47,7 @@ const AppContainer: FC<Props> = (props) => {
         </Route>
       </Switch>
     </div>
-    </>
+    </div>
   );
 };
 

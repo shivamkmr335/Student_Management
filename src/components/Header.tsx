@@ -34,7 +34,7 @@ const Header: FC<Props> = (props) => {
           </span>
       </div>
     </div>
-    <div className="w-screen h-12 bg-gray-50 flex items-center">
+    <div className="w-screen h-12 bg-gray-100 flex items-center">
         <HiOutlineMenu  className="h-6 w-6 ml-8 text-gray-600"/>
     </div>
     <HeadlessUI okText="Select" open={isOpen} onClose={setIsOpen}></HeadlessUI>

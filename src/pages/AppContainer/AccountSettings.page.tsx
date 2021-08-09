@@ -57,11 +57,8 @@ const AccountSettingsPage: FC<Props> = (props) => {
       <form className="mt-8 space-y-6" onSubmit={handleSubmit} >
       <div className="bg-white rounded m-3 p-5"> 
         <h3 className="font-semibold w-full pr-12 ">GENEREAL INFORMATION</h3>
-        <div className="flex flex-row-reverse justify-evenly">
-          <div> 
-            <Avatar className="w-32 m-4" imgUrl="https://icons-for-free.com/iconfiles/png/512/boy+character+man+user+icon-1320085976934394387.png" size="large" border="square"></Avatar>
-            <InputBox className=" w-36 " border="border rounded mx-4" placeholder="Change Image URL" ></InputBox>
-          </div>
+        <div className="flex flex-row items-center">
+          
           <div>
             <h4 className="ml-6 mt-4" >Name</h4>
             <div className="flex max-w-full">
@@ -81,6 +78,11 @@ const AccountSettingsPage: FC<Props> = (props) => {
             <div className="flex max-w-full">
               <InputBox className=" w-64 " border="border rounded mx-4" value={user.education} placeholder="Education Details" ></InputBox>
             </div>
+          </div>
+
+          <div className="flex flex-col w-full items-center"> 
+            <Avatar className="w-32 m-4" imgUrl="https://icons-for-free.com/iconfiles/png/512/boy+character+man+user+icon-1320085976934394387.png" size="large" border="square"></Avatar>
+            <InputBox className=" w-36 " border="border rounded mx-4" placeholder="Change Image URL" ></InputBox>
           </div>
 
         </div>
@@ -106,7 +108,7 @@ const AccountSettingsPage: FC<Props> = (props) => {
         
       </div>
 
-      <div className="flex justify-evenly">
+      <div className="flex justify-evenly w-3/4 fixed bottom-0">
         <Button>Discard Changes</Button>
         <Button type="submit">Save Changes</Button>
       </div>

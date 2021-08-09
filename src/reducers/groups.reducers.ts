@@ -1,5 +1,5 @@
 import { Reducer } from "redux";
-import { GROUPS_QUERY, GROUPS_QUERY_COMPLETED } from "../actions/actions.constants";
+import { GROUPS_QUERY, GROUPS_QUERY_COMPLETED, GROUPS_SELECTED_ID } from "../actions/actions.constants";
 import { Group } from "../models/Group";
 
 export interface GroupState {
@@ -8,12 +8,14 @@ export interface GroupState {
     };
     query: string;
     queryMap: { [query: string]: number[] };
+    selectedGroupId: number; 
 }
 
 const initialState ={
     byId: {},
     query: "",
-    queryMap: {}
+    queryMap: {},
+    selectedGroupId: 0
 }
 
 export const groupReducer: Reducer<GroupState>= (state = initialState, action) => {
@@ -33,6 +35,12 @@ export const groupReducer: Reducer<GroupState>= (state = initialState, action) =
                 queryMap: { ...state.queryMap, [action.payload.query]:groupIds },
                 byId: {...state.byId, ...groupMap}
             };
+        case GROUPS_SELECTED_ID:
+            const currentID = action.payload as number;
+            return {
+                ...state,
+                selectedGroupId: currentID
+            }
         default: 
             return state;
     }

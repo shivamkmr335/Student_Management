@@ -6,7 +6,6 @@ import Button from '../../components/Button/Button';
 import InputBox from '../../components/InputBox/InputBox';
 import { User } from '../../models/User';
 import { useAppSelector } from '../../store';
-import * as yup from "yup";
 import { useHistory } from 'react-router-dom';
 import { authActions } from '../../actions/auth.actions';
 

@@ -6,3 +6,4 @@ export const ME_LOGIN ="me/login";
 // Group Actions Constants
 export const GROUPS_QUERY = "groups/query";
 export const GROUPS_QUERY_COMPLETED = "groups/query_completed";
+export const GROUPS_SELECTED_ID = "groups/selectedGroupId";

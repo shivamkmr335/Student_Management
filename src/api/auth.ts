@@ -45,9 +45,10 @@ export const me = ()=> {
 export const updateUser = (data: User)=>{
     const url = BASE_URL + "/me";
 
-    return axios.put(url,data)
+    return axios.put<MeResponse>(url,data)
         .then((response) => {
             console.log(response);
+            return response;
         })
         .catch((err) => {
             console.log(err);

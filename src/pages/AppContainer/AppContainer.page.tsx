@@ -4,6 +4,7 @@ import Header from '../../components/Header';
 import SideBar from '../../components/SideBar';
 import AccountSettingsPage from './AccountSettings.page';
 import DashboardPage from './Dashboard.page';
+import GroupsPage from './Groups.page';
 import LecturePage from './Lecture.page';
 import RecordingsPage from './Recordings.page';
 
@@ -26,6 +27,9 @@ const AppContainer: FC<Props> = (props) => {
         </Route>
         <Route path="/editAccount">
           <AccountSettingsPage></AccountSettingsPage>
+        </Route>
+        <Route path="/groups">
+          <GroupsPage></GroupsPage>
         </Route>
         <Route path="/lecture/:lectureNumber">
           <LecturePage></LecturePage>

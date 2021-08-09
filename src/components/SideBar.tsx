@@ -4,15 +4,16 @@ import { HiOutlineChevronRight, HiOutlineHome,HiOutlineChip, HiOutlineCube, HiOu
  HiOutlineArrowsExpand, HiOutlineMap,HiOutlineChartPie,HiOutlineTrendingUp,HiOutlineDocumentReport} from 'react-icons/hi';
 
 interface Props {
+  visible?:boolean;
 }
 
 const Sidebar: FC<Props> = (props) => {
   return (
-    <div className=" bg-gray-100 w-52">
+    <div className=" bg-gray-100 w-52 relative">
       <div >
           <button className="block py-2 text-sm font-semibold px-2 border-0 mx-2 my-3 border-box rounded-md w-48 text-left hover:bg-gray-300 "><HiOutlineHome className="inline-block mr-2 w-5 h-5 text-gray-600"/> Dashboard <HiOutlineChevronRight className="inline-block float-right mt-1 text-gray-500"/></button>
-          <button className="block py-2 text-sm font-semibold px-2 border-0 mx-2 my-3 border-box rounded-md w-48 text-left hover:bg-gray-300 "><HiOutlineChip className="inline-block mr-2 w-5 h-5 text-gray-600"/>Apps  <HiOutlineChevronRight className="inline-block float-right mt-1 text-gray-500"/></button>
-          <button className="block py-2 text-sm font-semibold px-2 border-0 mx-2 my-3 border-box rounded-md w-48 text-left hover:bg-gray-300 "><HiOutlineCube className="inline-block mr-2 w-5 h-5 text-gray-600"/>Components <HiOutlineChevronRight className="inline-block float-right mt-1 text-gray-500"/></button>
+          <button className="block py-2 text-sm font-semibold px-2 border-0 mx-2 my-3 border-box rounded-md w-48 text-left hover:bg-gray-300 "><HiOutlineChip className="inline-block mr-2 w-5 h-5 text-gray-600"/>Edit Account  </button>
+          <button className="block py-2 text-sm font-semibold px-2 border-0 mx-2 my-3 border-box rounded-md w-48 text-left hover:bg-gray-300 "><HiOutlineCube className="inline-block mr-2 w-5 h-5 text-gray-600"/>Groups <HiOutlineChevronRight className="inline-block float-right mt-1 text-gray-500"/></button>
           <button className="block py-2 text-sm font-semibold px-2 border-0 mx-2 my-3 border-box rounded-md w-48 text-left hover:bg-gray-300 "><HiOutlineLightningBolt className="inline-block mr-2 w-5 h-5 text-gray-600"/>Elements <HiOutlineChevronRight className="inline-block float-right mt-1 text-gray-500"/></button>
           <button className="block py-2 text-sm font-semibold px-2 border-0 mx-2 my-3 border-box rounded-md w-48 text-left hover:bg-gray-300 "><HiOutlineStop className="inline-block mr-2 w-5 h-5 text-gray-600"/>Font Icons</button>
           <button className="block py-2 text-sm font-semibold px-2 border-0 mx-2 my-3 border-box rounded-md w-48 text-left hover:bg-gray-300 "><HiOutlineTerminal className="inline-block mr-2 w-5 h-5 text-gray-600"/>Widgets</button>
@@ -33,6 +34,7 @@ const Sidebar: FC<Props> = (props) => {
 };
 
 Sidebar.defaultProps = {
+  visible: false,
 }
 
 export default  memo(Sidebar);

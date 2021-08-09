@@ -1,10 +1,10 @@
 
-import {FC,memo,Fragment} from 'react';
+import {FC,memo} from 'react';
 import { HiOutlineChevronRight, HiOutlineHome,HiOutlineChip, HiOutlineCube, HiOutlineLightningBolt ,HiOutlineStop, HiOutlineTerminal
  ,HiOutlineTable, HiOutlineDatabase, HiOutlineClipboard ,HiOutlineUserGroup, HiOutlineDocument ,HiOutlineLockClosed,
  HiOutlineArrowsExpand, HiOutlineMap,HiOutlineChartPie,HiOutlineTrendingUp,HiOutlineDocumentReport} from 'react-icons/hi';
 import { Link } from 'react-router-dom';
-import { Dialog, Transition } from '@headlessui/react';
+import { Transition } from '@headlessui/react';
 
 interface Props {
   visible?:boolean;

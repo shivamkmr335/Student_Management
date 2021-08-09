@@ -25,7 +25,7 @@ const App: FC<Props> = (props) => {
     if(!token){
       return;
     }
-    me().then((u) => authActions.fetch(u));
+    me().then((u) => authActions.fetch(u)); // eslint-disable-next-line
   }, []); //Empty Dependency
 
   if(!user && token){  // Agar user hai aur token nahi hai , it means me() api call is still running in the background. And when user is returned we call setUser() which rerenders the app component.

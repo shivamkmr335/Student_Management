@@ -30,17 +30,18 @@ const GroupsPage: FC<Props> = (props) => {
   
     return (
       <div className="w-3/4">
-        <div className="flex justify-between">
-          <InputBox type="text" value={query} onChange={(e) => {
+        <div className="flex justify-center">
+          <InputBox type="text" placeholder="Search" value={query} onChange={(e) => {
             groupActions.query(e.target.value)
           }}></InputBox>
         </div>
-  
-        <ul className="ml-8 my-12 p-2 bg-gray-300 text-2xl w-full">
-          {groups && groups.map((group:any, key:number) => {
-            return <UserList name={group.name} description={group.description} index={key} ></UserList>
-          })}
-        </ul>
+        <div className="flex justify-center">
+        <div className="flex flex-col text-lg">
+            {groups && groups.map((group:any, key:number) => {
+              return <UserList name={group.name} id={group.id} index={key}></UserList>
+            })}
+        </div>
+        </div>
       </div>
     );
 };

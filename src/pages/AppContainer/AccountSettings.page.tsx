@@ -23,7 +23,6 @@ const AccountSettingsPage: FC<Props> = (props) => {
 
   const {handleSubmit , getFieldProps } = useFormik({
     initialValues: {
-      imageURL: user.profile_pic_url,
       fName: user.first_name,
       mName: user.middle_name,
       lName: user.last_name,
@@ -35,7 +34,6 @@ const AccountSettingsPage: FC<Props> = (props) => {
     },
     onSubmit: (data)=> {
       const user: User = {
-        profile_pic_url: data.imageURL,
         first_name: data.fName,
         middle_name: data.mName,
         last_name: data.lName,
@@ -46,8 +44,11 @@ const AccountSettingsPage: FC<Props> = (props) => {
       }
       updateUser(user)
         .then(()=> {
-          me().then((u) => authActions.fetch(u));
-          history.push("/dashboard");
+          console.log(user);
+          me().then((u) => {
+            authActions.fetch(u);
+            history.push("/dashboard");
+          }).catch((e)=> console.log(e))
         });
     }
   })
@@ -61,8 +62,8 @@ const AccountSettingsPage: FC<Props> = (props) => {
         <h3 className="font-semibold w-full pr-12 ">GENEREAL INFORMATION</h3>
         <div className="flex flex-row-reverse justify-evenly">
           <div> 
-            <Avatar className="w-32 m-4" imgUrl="https://images.unsplash.com/photo-1554126807-6b10f6f6692a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80" size="large" border="square"></Avatar>
-            <InputBox  {...getFieldProps("imageURL")} className=" w-36 " border="border rounded mx-4" placeholder="Change Image URL" ></InputBox>
+            <Avatar className="w-32 m-4" imgUrl="https://icons-for-free.com/iconfiles/png/512/boy+character+man+user+icon-1320085976934394387.png" size="large" border="square"></Avatar>
+            <InputBox className=" w-36 " border="border rounded mx-4" placeholder="Change Image URL" ></InputBox>
           </div>
           <div>
             <h4 className="ml-6 mt-4" >Name</h4>

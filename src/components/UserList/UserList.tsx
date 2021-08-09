@@ -2,19 +2,18 @@ import {FC,memo} from 'react';
 
 interface Props {
     name: string;
-    description: string;
     index: number;
+    id:number;
 }
 
-const UserList: FC<Props> = ({name,description,index}) => {
+const UserList: FC<Props> = ({name,index,id}) => {
 
     const bgTheme= (index%2 === 0 ) ? " bg-gray-50 hover:bg-gray-100 " : " bg-gray-200 hover:bg-gray-300 "
 
   return (
-    <li className={ "flex items-center  " + bgTheme }>
-      <div className="pl-4 py-4 w-1/3 text-2xl font-bold ">{name}</div>
-      <div className=" w-2/3 text-xl font-semibold text-gray-700 ">{description}</div>
-    </li>
+    <button className={ "items-center  w-72 text-center p-2 flex justify-between font-semibold" + bgTheme }>
+      {name} <span>{id}</span>
+    </button>
   );
 };
 

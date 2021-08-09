@@ -15,6 +15,7 @@ const GroupsPage: FC<Props> = (props) => {
     const query= useAppSelector(groupQuerySelector);
 
     const groups= useAppSelector(groupsSelector);
+    
     useEffect(()=>{
       fetchGroups({status: "all-groups", query})
       .then((groups)=> {

@@ -28,8 +28,6 @@ const App: FC<Props> = (props) => {
     me().then((u) => authActions.fetch(u));
   }, []); //Empty Dependency
 
-  console.log("App rendering and token is "+ token);
-
   if(!user && token){  // Agar user hai aur token nahi hai , it means me() api call is still running in the background. And when user is returned we call setUser() which rerenders the app component.
     return <div>loading...</div>;
   }
@@ -47,7 +45,7 @@ const App: FC<Props> = (props) => {
               <Route path={["/login","/signup"]}>
               {user ? <Redirect to="/dashboard"></Redirect> : <AuthPageLazy /> }
               </Route> 
-              <Route path={["/dashboard","/recordings","/lecture/:lectureNumber","/editAccount","/groups"]}>
+              <Route path={["/dashboard","/recordings","/lecture/:lectureNumber","/editAccount","/groups","/groupsSelected"]}>
                 {user ? <AppContainerPageLazy/> : <Redirect to="/login"></Redirect> }
               </Route>
               <Route>

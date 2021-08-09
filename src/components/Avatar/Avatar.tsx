@@ -18,8 +18,6 @@ const Avatar: FC<Props> = ({size,status,border,imgUrl,className}) => {
 
     var borderTheme= (border === 'circle')? " rounded-full " : " rounded "
 
-    console.log(status);
-
   return (
     <div>    
         <div className={" relative flex justify-center items-end " + className }>

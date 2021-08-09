@@ -5,7 +5,6 @@ import { logout } from '../api/auth';
 import Avatar from './Avatar/Avatar';
 import { Dialog, Transition } from '@headlessui/react';
 import { useState, Fragment } from 'react';
-import {ChevronRightIcon  } from "@heroicons/react/outline";
 import {Link} from 'react-router-dom';
 import { FaUserEdit } from "react-icons/fa";
 

@@ -16,8 +16,6 @@ const AccountSettingsPage: FC<Props> = (props) => {
 
   const user= useAppSelector((state) => state.users.byId[state.auth.id!]);
 
-  console.log(user);
-
   const history=useHistory();
 
   const {handleSubmit , getFieldProps } = useFormik({

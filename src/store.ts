@@ -14,7 +14,10 @@ const reducer = combineReducers({
 
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
 
-export const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() );
+export const store = createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() 
+);
 
 export type AppState = ReturnType<typeof store.getState>;
 

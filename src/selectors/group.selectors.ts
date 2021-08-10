@@ -56,7 +56,7 @@ const groupByIdSelector=createSelector(
 // }
 
 // Third Approach
-export const groupSelector = createSelector(
+export const groupsSelector = createSelector(
   [
     groupQuerySelector,
     groupQueryMapSelector,
